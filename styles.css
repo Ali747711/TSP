@@ -1,0 +1,249 @@
+/* TSP Game - The Route Challenge */
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Globe container - will take the full viewport */
+#globe-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+/* UI Container - overlay on top of globe */
+#ui-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    padding: 20px;
+    pointer-events: none; /* Allow clicks to pass through to the globe */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Make all interactive elements within UI container clickable */
+#ui-container button,
+#ui-container .info-box {
+    pointer-events: auto;
+}
+
+/* Title styling */
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Instructions */
+.instructions {
+    background-color: rgba(0, 15, 30, 0.7);
+    border: 1px solid #00f3ff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 auto 20px;
+    max-width: 600px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+/* Info box for path details */
+.info-box {
+    background-color: rgba(0, 15, 30, 0.7);
+    border: 1px solid #00f3ff;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 300px;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.path-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00f3ff;
+    margin-bottom: 5px;
+}
+
+#path-sequence {
+    font-family: monospace;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    max-height: 60px;
+    overflow-y: auto;
+}
+
+/* Stats display */
+.path-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    color: #00f3ff;
+    font-weight: bold;
+}
+
+/* Controls */
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding: 20px;
+}
+
+.control-buttons button {
+    background-color: rgba(0, 15, 30, 0.8);
+    color: #00f3ff;
+    border: 1px solid #00f3ff;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.control-buttons button:hover {
+    background-color: rgba(0, 243, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.control-buttons button:active {
+    transform: translateY(1px);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background-color: rgba(0, 15, 30, 0.9);
+    border: 2px solid #00f3ff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+    color: #fff;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+    color: #00f3ff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #00f3ff;
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: fixed;
+    background: rgba(0, 15, 30, 0.85);
+    border: 1px solid #00f3ff;
+    border-radius: 8px;
+    padding: 12px;
+    color: #fff;
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    backdrop-filter: blur(3px);
+    max-width: 250px;
+}
+
+.tooltip-header {
+    color: #00f3ff;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+}
+
+.tooltip-body {
+    font-size: 12px;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .info-box {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .control-buttons button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
