@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSP Game - The Route Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="globe-container"></div>
+    <div id="ui-container">
+        <h1 class="title">TRAVELING SALESMAN PROBLEM</h1>
+        <div class="instructions">
+            <p>Click on countries to create your route. Visit all countries once and return to start.</p>
+        </div>
+        
+        <div class="info-box">
+            <div class="path-header">PATH:</div>
+            <div id="path-sequence">0</div>
+            <div class="path-stats">
+                <div class="stat-item">
+                    <div class="stat-label">DISTANCE:</div>
+                    <div id="total-distance">0 km</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">ENERGY:</div>
+                    <div id="energy-units">0 units</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">COUNTRIES:</div>
+                    <div id="countries-visited">1</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-buttons">
+            <button id="auto-rotate">AUTO ROTATE</button>
+            <button id="reset">RESET</button>
+            <button id="optimize">OPTIMIZE</button>
+            <button id="complete-route">COMPLETE ROUTE</button>
+            <button id="design-thinking">DESIGN THINKING</button>
+        </div>
+    </div>
+
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Route Results</h2>
+            <div id="result-content"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/three@0.132.2/build/three.min.js"></script>
+    <script src="https://unpkg.com/globe.gl@2.26.3/dist/globe.gl.min.js"></script>
+    <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
