@@ -809,9 +809,10 @@ function setupEventListeners() {
         validateAndCompleteRoute();
     });
     
-    // Design thinking link - now opens the external URL directly
-    // No need for event listener as the anchor tag handles the link navigation
-    // The href and target attributes take care of opening the link in a new tab
+    // Design thinking button - opens Google Docs file in a new tab
+    document.getElementById('design-thinking').addEventListener('click', () => {
+        window.open('https://docs.google.com/document/d/1YdGcXAO-q6Au8QCcoexwh6XVp1JU8MoqBl6L6Ef-GfA/edit?tab=t.0#heading=h.qh8b587pmeyj', '_blank');
+    });
     
     // Modal close button
     document.querySelector('.close').addEventListener('click', () => {
