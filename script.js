@@ -811,6 +811,7 @@ function setupEventListeners() {
     
     // Design thinking button - opens Google Docs file in a new tab
     document.getElementById('design-thinking').addEventListener('click', () => {
+        // Open the Google Docs URL in a new tab
         window.open('https://docs.google.com/document/d/1YdGcXAO-q6Au8QCcoexwh6XVp1JU8MoqBl6L6Ef-GfA/edit?tab=t.0#heading=h.qh8b587pmeyj', '_blank');
     });
     
@@ -978,25 +979,7 @@ function showResult(title, content) {
 }
 
 // Show design thinking information
-function showDesignThinking() {
-    showResult("Design Thinking", `
-        <h3>About the Traveling Salesman Problem</h3>
-        <p>The Traveling Salesman Problem (TSP) is a classic algorithmic problem in computer science:</p>
-        <p>"Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"</p>
-        
-        <h3>Game Implementation</h3>
-        <p>This game visualizes the TSP on a 3D globe, allowing players to:</p>
-        <ul>
-            <li>Manually create routes by selecting countries</li>
-            <li>See the distance and energy cost of their route</li>
-            <li>Try to find the optimal solution</li>
-            <li>Use the "Optimize" feature to see a computer-generated solution</li>
-        </ul>
-        
-        <h3>Algorithms</h3>
-        <p>The "Optimize" button uses a nearest neighbor algorithm, which is a greedy approach to solving TSP. While not guaranteed to find the optimal solution, it's computationally efficient and produces reasonably good routes.</p>
-    `);
-}
+// Design Thinking content removed - now using external Google Docs link instead
 
 // Add a listener to clean up tooltips when mouse leaves the globe container
 document.getElementById('globe-container').addEventListener('mouseleave', () => {
