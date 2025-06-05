@@ -809,10 +809,9 @@ function setupEventListeners() {
         validateAndCompleteRoute();
     });
     
-    // Design thinking button
-    document.getElementById('design-thinking').addEventListener('click', () => {
-        showDesignThinking();
-    });
+    // Design thinking link - now opens the external URL directly
+    // No need for event listener as the anchor tag handles the link navigation
+    // The href and target attributes take care of opening the link in a new tab
     
     // Modal close button
     document.querySelector('.close').addEventListener('click', () => {
