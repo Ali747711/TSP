@@ -130,7 +130,8 @@ body {
     padding: 20px;
 }
 
-.control-buttons button {
+.control-buttons button,
+.control-buttons .button-link {
     background-color: rgba(0, 15, 30, 0.8);
     color: #00f3ff;
     border: 1px solid #00f3ff;
@@ -140,15 +141,20 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
-.control-buttons button:hover {
+.control-buttons button:hover,
+.control-buttons .button-link:hover {
     background-color: rgba(0, 243, 255, 0.2);
     box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
     transform: translateY(-2px);
 }
 
-.control-buttons button:active {
+.control-buttons button:active,
+.control-buttons .button-link:active {
     transform: translateY(1px);
 }
 
