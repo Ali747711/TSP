@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSP Game - Manual</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles specific to the manual page */
+        body {
+            background-color: #000;
+            background-image: url('https://unpkg.com/three-globe/example/img/night-sky.png');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        html {
+            height: 100%;
+            overflow-y: scroll;
+        }
+        
+        .manual-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .manual-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .manual-title {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+            margin-bottom: 0.5rem;
+        }
+        
+        .manual-subtitle {
+            font-size: 1.5rem;
+            color: #00f3ff;
+            margin-bottom: 1rem;
+        }
+        
+        .manual-content {
+            background-color: rgba(0, 15, 30, 0.7);
+            border: 1px solid #00f3ff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            backdrop-filter: blur(5px);
+            margin-bottom: 2rem;
+        }
+        
+        .manual-section {
+            margin-bottom: 2rem;
+        }
+        
+        .manual-section h2 {
+            color: #00f3ff;
+            border-bottom: 1px solid #00f3ff;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .manual-section h3 {
+            color: #ff00ff;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .manual-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .manual-section ul, .manual-section ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        .manual-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .manual-section code {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #00f3ff;
+        }
+        
+        .manual-image {
+            max-width: 100%;
+            border: 1px solid #00f3ff;
+            border-radius: 5px;
+            margin: 1rem 0;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .back-button {
+            background-color: rgba(0, 15, 30, 0.8);
+            color: #00f3ff;
+            border: 1px solid #00f3ff;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.7);
+            transform: translateY(-3px);
+        }
+        
+        .back-button:active {
+            transform: translateY(1px);
+        }
+        
+        .key-concept {
+            background-color: rgba(255, 0, 255, 0.1);
+            border-left: 3px solid #ff00ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tip {
+            background-color: rgba(0, 243, 255, 0.1);
+            border-left: 3px solid #00f3ff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="manual-container">
+        <div class="manual-header">
+            <h1 class="manual-title">TRAVELING SALESMAN PROBLEM</h1>
+            <h2 class="manual-subtitle">Game Manual</h2>
+        </div>
+        
+        <div class="manual-content">
+            <div class="manual-section">
+                <h2>Introduction</h2>
+                <p>Welcome to the TSP Game, an interactive visualization of the classic Traveling Salesman Problem. This educational game allows you to explore one of the most famous problems in computer science and operations research through an engaging 3D interface.</p>
+                
+                <div class="key-concept">
+                    <h3>What is the Traveling Salesman Problem?</h3>
+                    <p>The Traveling Salesman Problem (TSP) asks: "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?"</p>
+                    <p>This is a famous NP-hard problem in combinatorial optimization, studied in operations research and theoretical computer science.</p>
+                </div>
+            </div>
+            
+            <div class="manual-section">
+                <h2>Game Objectives</h2>
+                <p>In this game, you will:</p>
+                <ul>
+                    <li>Create routes by selecting countries/cities on a 3D globe</li>
+                    <li>Try to find the shortest possible route that visits all locations</li>
+                    <li>Learn about optimization algorithms through interactive play</li>
+                    <li>Compare your manual solutions with computer-generated ones</li>
+                </ul>
+            </div>
+            
+            <div class="manual-section">
+                <h2>Controls & Interface</h2>
+                
+                <h3>Globe Navigation</h3>
+                <ul>
+                    <li><strong>Rotate:</strong> Click and drag on the globe</li>
+                    <li><strong>Zoom:</strong> Use mouse wheel or pinch gesture</li>
+                    <li><strong>Auto-rotate:</strong> Toggle with the AUTO ROTATE button</li>
+                </ul>
+                
+                <h3>Node Selection</h3>
+                <ul>
+                    <li>Hover over a node to see country information</li>
+                    <li>Click on a node to add it to your route</li>
+                    <li>Nodes glow brighter when hovered or selected</li>
+                </ul>
+                
+                <h3>Control Buttons</h3>
+                <ul>
+                    <li><strong>AUTO ROTATE:</strong> Toggle automatic rotation of the globe</li>
+                    <li><strong>NEW GAME:</strong> Reset the game and start over</li>
+                    <li><strong>OPTIMIZE:</strong> Generate an optimized route using algorithms</li>
+                    <li><strong>COMPLETE ROUTE:</strong> Finish your route by connecting back to the starting point</li>
+                    <li><strong>DESIGN THINKING:</strong> Learn about the game's design principles</li>
+                </ul>
+                
+                <div class="tip">
+                    <h3>Pro Tip</h3>
+                    <p>When selecting nodes, try to think ahead about the overall route shape. Sometimes a slightly longer individual connection can result in a much shorter overall route!</p>
+                </div>
+            </div>
+            
+            <div class="manual-section">
+                <h2>Game Mechanics</h2>
+                
+                <h3>Route Building</h3>
+                <p>As you select countries, the game will automatically connect them with arcs. These arcs represent the path your "salesman" will travel.</p>
+                
+                <h3>Distance Calculation</h3>
+                <p>The game calculates distances between points using great-circle distance (the shortest distance between two points on a sphere). This represents the real-world distance between locations.</p>
+                
+                <h3>Energy Units</h3>
+                <p>Energy units are calculated based on distance traveled. They represent the resources consumed during your journey.</p>
+                
+                <h3>Optimization Algorithm</h3>
+                <p>The "Optimize" button uses a nearest neighbor algorithm, which is a greedy approach to solving TSP. While not guaranteed to find the optimal solution, it's computationally efficient and produces reasonably good routes.</p>
+            </div>
+            
+            <div class="manual-section">
+                <h2>Strategy Tips</h2>
+                <ul>
+                    <li>Start by identifying clusters of nodes that are close together</li>
+                    <li>Try to avoid crossing your own path</li>
+                    <li>Consider the return trip to your starting point</li>
+                    <li>Compare your manual solutions with the algorithm's solution</li>
+                    <li>Experiment with different starting points</li>
+                </ul>
+            </div>
+            
+            <div class="manual-section">
+                <h2>Educational Value</h2>
+                <p>This game demonstrates several important concepts in computer science and mathematics:</p>
+                <ul>
+                    <li>NP-hard problems and computational complexity</li>
+                    <li>Heuristic algorithms vs. exact solutions</li>
+                    <li>Graph theory and optimization</li>
+                    <li>Spatial reasoning and 3D visualization</li>
+                    <li>Great-circle distance calculation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <a href="index.html" class="back-button">BACK TO HOME</a>
+        </div>
+    </div>
+</body>
+</html>
